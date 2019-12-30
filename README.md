@@ -1,12 +1,10 @@
 # Installation
 
-To install you can use
-
-Yarn:
+To install you run:
 
 `yarn install`
 
-# Running
+# Execution
 
 To start the server please run this in the terminal:
 

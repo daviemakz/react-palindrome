@@ -1,27 +1,27 @@
-'use strict';
+"use strict";
 
 // Declare node enviroment
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = "production";
 
 // Declase browser configuration
 const browserConfig = {
-  mode: 'production',
-  entry: './src/client/index.js',
+  mode: "production",
+  entry: "./src/client/index.jsx",
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: "./public/bundle.js"
   },
-  devtool: 'none',
+  devtool: "none",
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"]
   },
   module: {
     rules: [
       {
         test: /js|jsx$/,
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: { presets: ['react-app'] }
+        loader: "babel-loader",
+        query: { presets: ["react-app"] }
       }
     ]
   },

@@ -20,5 +20,9 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "antd": "^3.26.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
 }
