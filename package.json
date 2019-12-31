@@ -4,7 +4,9 @@
   "description": "A palindrome is a word or phrase string that reads the same backwards as forwards, independent of spaces and punctuation",
   "main": "index.js",
   "scripts": {
-    "test": "yarn test"
+    "eslint:fix": "eslint --config .eslintrc.js \"src/**\"  --quiet --fix",
+    "test": "cross-env NODE_ENV=test jest --verbose \"src/*/.*\\.test\\.js\"",
+    "test:watch": "cross-env NODE_ENV=test jest  --verbose --watchAll \"src/*/.*\\.test\\.js\""
   },
   "keywords": [
     "palindrome"
@@ -13,15 +15,28 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/plugin-syntax-throw-expressions": "^7.7.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.7.5",
+    "@babel/plugin-transform-regenerator": "^7.7.5",
+    "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
-    "express": "^4.17.1",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "jest": "^24.9.0",
+    "request": "^2.88.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
     "antd": "^3.26.5",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }
