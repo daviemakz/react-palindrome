@@ -60,6 +60,9 @@ export const getServer = (callback = () => void 0) =>
     ['SIGINT', 'SIGTERM'].forEach(sig => {
       process.on(sig, () => process.exit());
     });
+    console.log(
+      'Express server listening on http://localhost:3000. You can access it via webpack-proxy @ http://localhost:8080/api'
+    );
     return callback();
   });
 

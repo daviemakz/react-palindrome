@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 // Assign variables
-const presets = ["@babel/preset-env"];
+const presets = ['@babel/preset-env'];
 const plugins = [
-  "@babel/plugin-transform-regenerator",
-  "@babel/plugin-syntax-throw-expressions",
-  "@babel/plugin-transform-modules-commonjs",
-  "@babel/plugin-proposal-optional-chaining"
+  '@babel/plugin-transform-regenerator',
+  '@babel/plugin-syntax-throw-expressions',
+  '@babel/plugin-transform-modules-commonjs',
+  '@babel/plugin-proposal-optional-chaining'
 ];
 
 // Babel configuration

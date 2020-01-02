@@ -1,10 +1,12 @@
 'use strict';
 
+// Import NPM modules
+import request from 'request';
+
 // Import resources
 import { getServer, checkPalindromes } from '.';
 import { defaultServerPath } from './constants';
 import { getRequestBody } from './utility';
-import request from 'request';
 
 // Generic test for all API calls, use currying so we can reuse the code below
 const testResult = ([result, httpStatusCode]) => done => (

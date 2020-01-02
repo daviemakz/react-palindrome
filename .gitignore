@@ -1,7 +1,4 @@
 # Ignore server output
-json.sqlite
-startServer.js
-startServer.js.map
 public
 
 # Logs
@@ -62,6 +59,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
-# next.js build output
-.next
