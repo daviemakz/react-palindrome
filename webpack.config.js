@@ -1,11 +1,11 @@
 "use strict";
 
 // Declare node enviroment
-process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "development";
 
 // Declase browser configuration
 const browserConfig = {
-  mode: "production",
+  mode: "development",
   entry: "./src/client/index.jsx",
   output: {
     path: __dirname,

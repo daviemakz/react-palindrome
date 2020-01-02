@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Import consts
 import {
@@ -9,29 +9,29 @@ import {
   failureCode,
   defaultServerPath,
   palindromeList
-} from "./constants";
+} from './constants';
 
 // Test suite
-describe("constants", () => {
-  test("port", () => {
+describe('constants', () => {
+  test('port', () => {
     expect(port).toEqual(3000);
   });
-  test("successCode", () => {
+  test('successCode', () => {
     expect(successCode).toEqual(200);
   });
-  test("failureCode", () => {
+  test('failureCode', () => {
     expect(failureCode).toEqual(400);
   });
-  test("host", () => {
-    expect(host).toEqual("localhost");
+  test('host', () => {
+    expect(host).toEqual('localhost');
   });
-  test("route", () => {
-    expect(route).toEqual("palindromes");
+  test('route', () => {
+    expect(route).toEqual('palindromes');
   });
-  test("defaultServerPath", () => {
-    expect(defaultServerPath).toEqual("http://localhost:3000/palindromes");
+  test('defaultServerPath', () => {
+    expect(defaultServerPath).toEqual('http://localhost:3000/palindromes');
   });
-  test("palindromeList", () => {
+  test('palindromeList', () => {
     expect(palindromeList).toEqual([]);
   });
 });

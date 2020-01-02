@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A palindrome is a word or phrase string that reads the same backwards as forwards, independent of spaces and punctuation",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "eslint:fix": "eslint --config .eslintrc.js \"src/**\"  --quiet --fix",
     "test": "cross-env NODE_ENV=test jest --verbose \"src/*/.*\\.test\\.js\"",

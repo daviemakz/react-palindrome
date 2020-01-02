@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
 // Define server settings
 export const port = 3000;
-export const host = "localhost";
-export const route = `palindromes`;
+export const host = 'localhost';
+export const route = 'palindromes';
 
 // Define default route
 export const defaultServerPath = `http://${host}:${port}/${route}`;

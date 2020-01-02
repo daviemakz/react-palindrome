@@ -1,18 +1,18 @@
-"use strict";
+'use strict';
 
 // Load NPM modules
-import express from "express";
-import { isEqual } from "lodash";
+import express from 'express';
+import { isEqual } from 'lodash';
 
 // Import settings for server
-import { getResponseBody } from "./utility";
+import { getResponseBody } from './utility';
 import {
   port,
   host,
   palindromeList,
   successCode,
   failureCode
-} from "./constants";
+} from './constants';
 
 // Init server to configure
 const app = express();
@@ -20,14 +20,14 @@ const app = express();
 // Check if something is a palindrome
 export const checkPalindromes = stringToTest => {
   // Anything which isnt a string we return early false
-  if (typeof stringToTest !== "string") {
+  if (typeof stringToTest !== 'string') {
     return false;
   }
   // Split the string, remove whitespace and symbols
   const originalString = stringToTest
     .toLowerCase()
-    .replace(/\W+/g, "")
-    .split("");
+    .replace(/\W+/g, '')
+    .split('');
   // Reverse the string and check for deep equality
   const reversedString = [].concat(originalString).reverse();
   // Return the result
@@ -38,12 +38,12 @@ export const checkPalindromes = stringToTest => {
 app.use(express.json());
 
 // Define route GET
-app.get("/palindromes", (req, res) =>
+app.get('/palindromes', (req, res) =>
   res.status(successCode).send(getResponseBody(successCode, palindromeList))
 );
 
 // Define route POST
-app.post("/palindromes", (req, res) =>
+app.post('/palindromes', (req, res) =>
   checkPalindromes(req.body.data)
     ? void palindromeList.push(req.body.data) ||
       res.status(successCode).send(getResponseBody(successCode, true))
@@ -57,11 +57,11 @@ export const getServer = (callback = () => void 0) =>
       throw new Error(_err);
     }
     // Kill the process on recieving SIGINT or SIGTERM
-    ["SIGINT", "SIGTERM"].forEach(sig => {
+    ['SIGINT', 'SIGTERM'].forEach(sig => {
       process.on(sig, () => process.exit());
     });
-    callback();
+    return callback();
   });
 
 // Only start the server if not in test mode
-process.env.NODE_ENV !== "test" && getServer();
+process.env.NODE_ENV !== 'test' && getServer();
