@@ -36,6 +36,7 @@ const devServer = {
   },
   host,
   port,
+  hot: false,
   features: [
     'before',
     'setup',
@@ -52,46 +53,36 @@ const devServer = {
   }
 };
 
-// Define plugins
-const plugins = [
-  new CleanWebpackPlugin({
-    verbose: true,
-    dry: true
-  }),
-  new HtmlWebPackPlugin({
-    template: './src/client/index.html',
-    filename: 'index.html',
-    excludeChunks: ['server']
-  }),
-  new RunNodeWebpackPlugin({
-    scriptToRun: 'server.js',
-    runOnlyOnChanges: true,
-    scriptsToWatch: ['server.js']
-  })
-];
+// Define resolve settings
+const resolve = {
+  modules: ['node_modules', Path.resolve(__dirname)],
+  extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+};
 
-// Declase browser configuration
-const browserConfig = {
+// What source maps you want?
+const devtool = 'cheap-module-source-map';
+
+// Define the output path
+const output = {
+  path: Path.resolve(__dirname, 'public'),
+  filename: '[name].js'
+};
+
+// Declare express configuration, we need to do this as they will have different targets
+const serverConfig = {
   mode: 'development',
   entry: {
-    app: 'src/client/index.jsx',
     server: 'src/server/index.js'
   },
-  output: {
-    path: Path.resolve(__dirname, 'public'),
-    filename: '[name].js'
-  },
-  devtool: 'cheap-module-source-map',
+  output,
+  devtool,
   externals: [NodeExternals()], // Need this to avoid error when working with Express
-  resolve: {
-    modules: ['node_modules', Path.resolve(__dirname)],
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
-  },
   target: 'node',
   node: {
     __dirname: false,
     __filename: false
   },
+  resolve,
   module: {
     rules: [
       {
@@ -102,7 +93,53 @@ const browserConfig = {
     ]
   },
   devServer,
-  plugins
+  plugins: [
+    new RunNodeWebpackPlugin({
+      scriptToRun: 'server.js',
+      runOnlyOnChanges: true,
+      scriptsToWatch: ['server.js']
+    })
+  ]
 };
 
-module.exports = [browserConfig];
+// Declase browser configuration
+const browserConfig = {
+  mode: 'development',
+  entry: {
+    app: 'src/client/index.jsx'
+  },
+  output,
+  target: 'web',
+  devtool,
+  resolve,
+  module: {
+    rules: [
+      {
+        test: /js|jsx$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { sourceMap: true } }
+        ]
+      }
+    ]
+  },
+  devServer,
+  plugins: [
+    new CleanWebpackPlugin({
+      verbose: true,
+      dry: true
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/client/index.html',
+      filename: 'index.html',
+      excludeChunks: ['server']
+    })
+  ]
+};
+
+module.exports = [serverConfig, browserConfig];

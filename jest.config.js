@@ -116,7 +116,7 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: ["./jest.setup.js"],
+  setupFiles: ['./jest.setup.js'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
@@ -161,11 +161,12 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '.+\\.(js|ts|jsx|tsx)$': '<rootDir>/node_modules/babel-jest'
+    '.+\\.(js|ts|jsx|tsx)$': '<rootDir>/node_modules/babel-jest',
+    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+      'jest-transform-stub'
   },
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns: ['/node_modules/']
-
+  transformIgnorePatterns: ['/node_modules/(?!(antd|rc-.+|css-animation)/).*/']
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
 

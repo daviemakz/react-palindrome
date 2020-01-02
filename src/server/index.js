@@ -51,7 +51,7 @@ app.post('/palindromes', (req, res) =>
 );
 
 // Define the function which will launch the server
-export const getServer = (callback = () => void 0) =>
+export const startServer = (callback = () => void 0) =>
   app.listen(port, host, _err => {
     if (_err) {
       throw new Error(_err);
@@ -60,11 +60,14 @@ export const getServer = (callback = () => void 0) =>
     ['SIGINT', 'SIGTERM'].forEach(sig => {
       process.on(sig, () => process.exit());
     });
-    console.log(
-      'Express server listening on http://localhost:3000. You can access it via webpack-proxy @ http://localhost:8080/api'
-    );
+    if (process.env.NODE_ENV !== 'test') {
+      console.log('Express server listening on http://localhost:3000');
+      console.log(
+        'You can access it via webpack-dev-server via http://localhost:8080/api'
+      );
+    }
     return callback();
   });
 
 // Only start the server if not in test mode
-process.env.NODE_ENV !== 'test' && getServer();
+process.env.NODE_ENV !== 'test' && startServer();

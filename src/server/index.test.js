@@ -4,7 +4,7 @@
 import request from 'request';
 
 // Import resources
-import { getServer, checkPalindromes } from '.';
+import { startServer, checkPalindromes } from '.';
 import { defaultServerPath } from './constants';
 import { getRequestBody } from './utility';
 
@@ -51,7 +51,7 @@ describe('server', () => {
       let server;
 
       beforeAll(done => {
-        server = getServer(done);
+        server = startServer(done);
       });
       afterAll(done => {
         server.close();
